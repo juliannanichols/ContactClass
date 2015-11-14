@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 /**
+ * This program can be used to create a contact.
  * @author woytek
  * @author Julianna Nichols
  */
@@ -18,27 +19,66 @@ public class ContactTest {
         String input = null;
         Scanner keyboard = new Scanner(System.in);
         
+        //user enters contact's last name
         System.out.print( "Enter last name: " );
         input = keyboard.nextLine();
         testContact.setLastName( input );
         
+        //user enters contact's first name
         System.out.print( "Enter first name: " );
         input = keyboard.nextLine();
         testContact.setFirstName( input );
         
+        //user enters contact's middle name
         System.out.print( "Enter middle name: " );
         input = keyboard.nextLine();
         testContact.setMiddleName( input );
         
+        //user enters contact's prefix
         System.out.print( "Enter prefix: " );
         input = keyboard.nextLine();
         testContact.setPrefix( input );
         
+        //user enters contact's phone number
         System.out.print( "Enter phone number (### - ### - ####): " );
         input = keyboard.nextLine();
         testContact.setPhoneNumber( input );
-             
-        System.out.println( "Last name: " + testContact.getLastName() );
+        
+        //user enters contact's e-mail address
+        System.out.print( "Enter e-mail: " );
+        input = keyboard.nextLine();
+        testContact.setEmail( input );
+        
+        //user enters contact's street name
+        System.out.print( "Enter street name: " );
+        input = keyboard.nextLine();
+        testContact.setStreet( input );
+        
+        //user enters contact's city name
+        System.out.print( "Enter city name: " );
+        input = keyboard.nextLine();
+        testContact.setCity( input );
+        
+        //user enters contact's state name
+        System.out.print( "Enter state name: " );
+        input = keyboard.nextLine();
+        testContact.setState( input );
+        
+        //user enters contact's zip code
+        System.out.print( "Enter zip code: " );
+        input = keyboard.nextLine();
+        testContact.setZip( input );
+        
+        //user enters contact's occupation
+        System.out.print( "Enter occupation: " );
+        input = keyboard.nextLine();
+        testContact.setOccupation( input );
+        
+        System.out.print( "First name: " + testContact.getFirstName() + "\nMiddle Name: " + testContact.getMiddleName()
+        					+ "\nLast Name: " + testContact.getLastName() + "\nStreet: "
+        					+ testContact.getStreet() + "\nCity: " + testContact.getCity() + "\nState: "
+        					+ testContact.getState() + "\nZip code: " + testContact.getZip() + "\nOccupation: "
+        					+ testContact.getOccupation() );
         
     }
     
@@ -58,8 +98,8 @@ public class ContactTest {
          */
         
         public void setLastName( String n ) {
-            
-            if( !n.matches( "^[A-Za-z]+$" )) {
+        	//regex parameters: any number of capital/lower case letters, hyphen, or apostrophe 
+            if( !n.matches( "^[A-Za-z-']+$" )) {
                 System.out.println( "Invalid characters in last name!" );
             } else {
                 lName = n;
@@ -81,8 +121,8 @@ public class ContactTest {
          */
     
         public void setFirstName( String n ) {
-            
-        	if ( !n.matches( "^[A-Za-z]=$" )) {
+        	//regex parameters: any number of capital/lower case letters, hyphen, or apostrophe
+        	if ( !n.matches( "^[A-Za-z-']+$" )) {
         		System.out.println( "Invalid characters in first name!" );
         	} else {
         		fName = n;
@@ -104,9 +144,9 @@ public class ContactTest {
          */
         
         public void setMiddleName( String n ) {
-            
-        	if( !n.matches( "^[A-Za-z]+$" )) {
-        		System.out.print( "Invalid characters in middle name!" );
+        	//regex parameters: any number of capital/lower case letters and spaces
+        	if( !n.matches( "^[A-Za-z ]+$" )) {
+        		System.out.println( "Invalid characters in middle name!" );
         	} else {
         		mName = n;
         	}
@@ -127,9 +167,9 @@ public class ContactTest {
          */
         
         public void setPrefix( String n ) {
-        	
-        	if( !n.matches( "^[A-Za-z]+$" )) {
-        		System.out.print( "Invalid characters in prefix!" );
+        	//regex parameters: any number of capital/lower case letters and period
+        	if( !n.matches( "^[A-Za-z.]+$" )) {
+        		System.out.println( "Invalid characters in prefix!" );
         	} else {
         		prefix = n;
         	}
@@ -150,7 +190,166 @@ public class ContactTest {
          */
         
         public void setPhoneNumber( String n ) {
-        	
+        	/*
+        	 * Regex parameters: numbers 0-9 and hyphen
+        	 * exactly 12 characters (###-###-####)
+        	 */
+            if( !n.matches( "^[0-9-]{12}$" )) {
+                System.out.println( "Invalid characters in phone number!" );
+            } else {
+                phone = n;
+            }
+        }
+        
+        /**
+         * Returns phone number 
+         * @return phone
+         */
+        
+        public String getPhoneNumber() {
+            return phone;
+        }
+        
+        /**
+         * Sets e-mail
+         * @param n
+         */
+        
+        public void setEmail( String n ) {
+        	//regex parameters: any number of capital/lower case letters, any number of numbers 0-9, period, and at sign
+            if( !n.matches( "^[A-Za-z0-9.@]+$" )) {
+                System.out.println( "Invalid characters in e-mail!" );
+            } else {
+                email = n;
+            }
+        }
+        
+        /**
+         * Returns e-mail
+         * @return email
+         */
+        
+        public String getEmail() {
+            return email;
+        }
+        
+        /**
+         * Sets street name (including house number and street name)
+         * @param n
+         */
+        
+        public void setStreet( String n ) {
+            //regex parameters: any number of capital/lower case letters, any number of numbers 0-9, spaces, and periods
+            if( !n.matches( "^[A-Za-z0-9. ]+$" )) {
+                System.out.println( "Invalid characters in street name!" );
+            } else {
+                street = n;
+            }
+        }
+        
+        /**
+         * Returns street name
+         * @return street
+         */
+        
+        public String getStreet() {
+            return street;
+        }
+        
+        /**
+         * Sets city name
+         * @param n
+         */
+        
+        public void setCity( String n ) {
+        	//regex parameters: any number of capital/lower case letters
+        	if( !n.matches( "^[A-Za-z]+$" )) {
+        		System.out.println( "Invalid characters in city name!" );
+        	} else {
+        		city = n;
+        	}
+        }
+        
+        /**
+         * Gets city name
+         * @return city
+         */
+        
+        public String getCity() {
+        	return city;
+        }
+        
+        /**
+         * Sets state name
+         * @param n
+         */
+        
+        public void setState( String n ) {
+        	//regex parameters: any number of capital/lower case letters
+        	if( !n.matches( "^[A-Za-z]+$" )) {
+        		System.out.println( "Invalid characters in state name!" );
+        	} else {
+        		state = n;
+        	}
+        }
+        
+        /**
+         * Gets state name
+         * @return state
+         */
+        
+        public String getState() {
+        	return state;
+        }
+        
+        /**
+         * Sets zip code
+         * @param n
+         */
+        
+        public void setZip( String n ) {
+        	/*
+        	 * regex parameters: numbers 0-9 and hyphen
+        	 * exactly 10 characters (#####-####) OR exactly 5 characters (#####)
+        	 */
+        	if( !n.matches( "^[0-9-]{10}|[0-9]{5}$" )) {
+        		System.out.println( "Invalid characters in zip code!" );
+        	} else {
+        		zip = n;
+        	}
+        }
+        
+        /**
+         * Gets zip code
+         * @return zip
+         */
+        
+        public String getZip() {
+        	return zip;
+        }
+        
+        /**
+         * Sets occupation name
+         * @param n
+         */
+        
+        public void setOccupation( String n ) {
+        	//regex parameters: any number of capital/lower case letters and spaces
+        	if( !n.matches( "^[A-Za-z ]+$" )) {
+        		System.out.println( "Invalid characters in occupation name!" );
+        	} else {
+        		occupation = n;
+        	}
+        }
+        
+        /**
+         * Gets occupation name
+         * @return occupation
+         */
+        
+        
+        public String getOccupation() {
+        	return occupation;
         }
         
         private String lName,fName, mName;
