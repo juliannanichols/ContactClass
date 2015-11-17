@@ -74,7 +74,7 @@ public class ContactTest {
         input = keyboard.nextLine();
         testContact.setOccupation( input );
         
-        System.out.print( "First name: " + testContact.getFirstName() + "\nMiddle Name: " + testContact.getMiddleName()
+        System.out.println( "First name: " + testContact.getFirstName() + "\nMiddle Name: " + testContact.getMiddleName()
         					+ "\nLast Name: " + testContact.getLastName() + "\nStreet: "
         					+ testContact.getStreet() + "\nCity: " + testContact.getCity() + "\nState: "
         					+ testContact.getState() + "\nZip code: " + testContact.getZip() + "\nOccupation: "
@@ -262,8 +262,8 @@ public class ContactTest {
          */
         
         public void setCity( String n ) {
-        	//regex parameters: any number of capital/lower case letters
-        	if( !n.matches( "^[A-Za-z]+$" )) {
+        	//regex parameters: any number of capital/lower case letters and spaces
+        	if( !n.matches( "^[A-Za-z ]+$" )) {
         		System.out.println( "Invalid characters in city name!" );
         	} else {
         		city = n;
